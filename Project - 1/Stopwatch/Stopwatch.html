@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #54b1f9;
+      }
+      #main {
+        background-color: black;
+        padding: 30px;
+        border: 2px solid red;
+        border-radius: 40px;
+        color: #0cff08;
+        width: 300px;
+        box-shadow: 15px 15px 24px 0px rgba(0, 0, 0, 0.75);
+      }
+      #demo {
+        text-align: center;
+        font-size: 30px;
+      }
+      button:disabled {
+        visibility: hidden;
+      }
+      .dltbtn {
+        margin: 5px;
+      }
+      p {
+        font-family: "Orbitron", sans-serif;
+      }
+      button {
+        font-size: 15px;
+        font-family: Arial;
+        width: 60px;
+        height: 35px;
+        margin: 5px;
+        border-width: 1px;
+        color: #3a8a9e;
+        border-color: #d6bcd6;
+        font-weight: bold;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 3px 4px 0px 0px #899599;
+        text-shadow: 0px 1px 0px #e1e2ed;
+        background: linear-gradient(#ededed, #bab1ba);
+      }
+
+      button:hover {
+        background: linear-gradient(#bab1ba, #ededed);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <p id="demo"></p>
+      <button id="startbtn">Start</button>
+      <button id="stopbtn">Stop</button>
+      <button id="resetbtn">Reset</button>
+      <button id="savebtn">Save</button>
+      <div id="newlist"></div>
+    </div>
+
+    <script>
+      var s = 0;
+      var m = 0;
+      var h = 0;
+      var ms = 0;
+
+      document.getElementById("savebtn").disabled = true;
+      document.getElementById("demo").innerHTML = `00 : 00 : 00 : 00`;
+
+      document.getElementById("startbtn").onclick = function () {
+        document.getElementById("startbtn").disabled = true;
+        document.getElementById("stopbtn").disabled = false;
+        document.getElementById("savebtn").disabled = false;
+        stint = setInterval(vivek, 10);
+        function vivek() {
+          ss = seconds();
+          function seconds() {
+            if (s < 10) {
+              return `0${s}`;
+            } else {
+              return `${s}`;
+            }
+          }
+          mm = minutes();
+          function minutes() {
+            if (m < 10) {
+              return `0${m}`;
+            } else {
+              return `${m}`;
+            }
+          }
+          hh = hours();
+          function hours() {
+            if (h < 10) {
+              return `0${h}`;
+            } else {
+              return `${h}`;
+            }
+          }
+          msms = miliscs();
+          function miliscs() {
+            if (ms < 10) {
+              return `0${ms}`;
+            } else {
+              return `${ms}`;
+            }
+          }
+          document.getElementById(
+            "demo"
+          ).innerHTML = `${hh} : ${mm} : ${ss} : ${msms}`;
+          ms++;
+          if (ms % 100 == 0) {
+            ms = 0;
+            s++;
+          }
+          if (s != 0 && s % 60 == 0) {
+            s = 0;
+            m++;
+          }
+          if (m != 0 && m % 60 == 0) {
+            m = 0;
+            h++;
+          }
+          if (h != 0 && h % 60 == 0) {
+            h = 0;
+          }
+        }
+      };
+
+      document.getElementById("stopbtn").onclick = function () {
+        document.getElementById("startbtn").disabled = false;
+        document.getElementById("stopbtn").disabled = true;
+        document.getElementById("savebtn").disabled = true;
+        clearInterval(stint);
+      };
+      document.getElementById("resetbtn").onclick = function () {
+        document.getElementById("startbtn").disabled = false;
+        document.getElementById("stopbtn").disabled = false;
+        document.getElementById("savebtn").disabled = true;
+        clearInterval(stint);
+        s = 0;
+        m = 0;
+        h = 0;
+        ms = 0;
+        document.getElementById("demo").innerHTML = `00 : 00 : 00 : 00`;
+        document.getElementById("newlist").remove();
+        var newl = document.createElement("div");
+        newl.id = "newlist";
+        document.getElementById("main").appendChild(newl);
+      };
+      var idn = 0;
+      document.getElementById("savebtn").onclick = function () {
+        idn++;
+        var main_value = document.getElementById("demo").innerHTML;
+        var d = `<p class='new_row' id='list${idn}'>
+            ${main_value}
+        <button class='dltbtn' onclick='delt(${idn})'>Delete</button>
+        </p>`;
+        var x = document
+          .getElementById("newlist")
+          .insertAdjacentHTML("afterbegin", d);
+        console.log(`${h} : ${m} : ${s} : ${ms}`);
+      };
+      function delt(idn) {
+        document.getElementById(`list${idn}`).remove();
+      }
+    </script>
+  </body>
+</html>

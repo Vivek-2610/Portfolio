@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Menu</title>
+  </head>
+  <body>
+    <select id="countrySelect" onchange="makesubmenu(this.value)">
+      <option value="" disabled selected>Select country</option>
+      <option value="India">India</option>
+      <option value="US">US</option>
+    </select>
+    <select id="stateSelect" onchange="makecitymenu(this.value)">
+      <option value="" disabled selected>Select State</option>
+      <option></option>
+    </select>
+    <select id="citySelect" onchange="changecity()">
+      <option value="" disabled selected>Select City</option>
+      <option></option>
+    </select>
+    <button onclick="displaySelected()">show selected</button>
+    <p id="showAll"></p>
+    <script>
+      var country = {
+        India: ["Gujarat", "Punjab", "Maharastra", "Rajasthan"],
+        US: ["Alabama", "Colorado", "Iowa", "Maine"],
+      };
+      var states = {
+        Gujarat: ["Ahmedabad", "Rajkot", "Gandhinagar", "Kutch", "Surat"],
+        Punjab: ["Amitsar", "Bhatinda", "Jalandhar", "Mohali", "Patiala"],
+        Maharastra: ["Mumbai", "Dhule", "Jalgaon", "Kolhapur", "Latur"],
+        Rajasthan: ["Ajmer", "Jaipur", "Jodhpur", "Kota", "Udaipur"],
+        Alabama: ["Andalusia", "Athens", "Auburn", "Sheffield", "Troy"],
+        Colorado: ["Denver", "Gunnison", "Littleton", "Pueblo", "Trinidad"],
+        Iowa: ["Dubuque", "Keokuk", "Newton", "Oskaloosa", "Waterloo"],
+        Maine: ["Castine", "Houlton", "Lewiston", "Portland", "Rumford"],
+      };
+      function makesubmenu(value) {
+        if (value.length == 0) {
+          document.getElementById("stateSelect").innerHTML =
+            "<option></option>";
+        } else {
+          var stateOptions = `<option disabled selected>Select State</option>`;
+          var cityOptions = `<option disabled selected>Select City</option>`;
+          for (stateId in country[value]) {
+            stateOptions += `<option>${country[value][stateId]}</option>`;
+          }
+          document.getElementById("stateSelect").innerHTML = stateOptions;
+          document.getElementById("citySelect").innerHTML = cityOptions;
+          document.getElementById("showAll").innerHTML = "";
+        }
+      }
+      function makecitymenu(value) {
+        if (value.length == 0) {
+          document.getElementById("citySelect").innerHTML = "<option></option>";
+        } else {
+          var cityOptions = `<option disabled selected>Select City</option>`;
+          for (cityId in states[value]) {
+            cityOptions += `<option>${states[value][cityId]}</option>`;
+          }
+          document.getElementById("citySelect").innerHTML = cityOptions;
+          document.getElementById("showAll").innerHTML = "";
+        }
+      }
+      function changecity() {
+        document.getElementById("showAll").innerHTML = "";
+      }
+      function displaySelected() {
+        var a = document.getElementById("showAll");
+        var b = document.getElementById("countrySelect").value;
+        var c = document.getElementById("stateSelect").value;
+        var d = document.getElementById("citySelect").value;
+
+        a.innerHTML = `Country : ${b}<br>State : ${c}<br>City : ${d}`;
+      }
+    </script>
+  </body>
+</html>

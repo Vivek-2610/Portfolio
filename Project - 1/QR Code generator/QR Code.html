@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #3a83f2;
+      }
+
+      .code {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .mainbox {
+        position: relative;
+        background-color: #ffffff;
+        display: flex;
+        flex-wrap: wrap;
+        width: 350px;
+        height: 350px;
+        margin: 20px;
+      }
+      .box {
+        width: 10px;
+        height: 10px;
+      }
+      .butt {
+        text-align: center;
+      }
+      button {
+        margin: 10px;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .cor1 {
+        background-color: #ffffff;
+        width: 80px;
+        height: 80px;
+        border: 10px solid #000000;
+        padding: 10px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .incor1 {
+        background-color: #000000;
+        width: 40px;
+        height: 40px;
+      }
+      .cor2 {
+        background-color: #ffffff;
+        width: 80px;
+        height: 80px;
+        border: 10px solid #000000;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .incor2 {
+        background-color: #000000;
+        width: 40px;
+        height: 40px;
+      }
+      .cor3 {
+        background-color: #ffffff;
+        width: 80px;
+        height: 80px;
+        border: 10px solid #000000;
+        padding: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+      .incor3 {
+        background-color: #000000;
+        width: 40px;
+        height: 40px;
+      }
+      .cor4 {
+        background-color: #ffffff;
+        width: 50px;
+        height: 50px;
+        border: 10px solid #000000;
+        padding: 10px;
+        position: absolute;
+        right: 40px;
+        bottom: 40px;
+      }
+      .incor4 {
+        background-color: #000000;
+        width: 10px;
+        height: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="code">
+      <div id="mainbox" class="mainbox">
+        <div class="cor1">
+          <div class="incor1"></div>
+        </div>
+        <div class="cor2">
+          <div class="incor2"></div>
+        </div>
+        <div class="cor3">
+          <div class="incor3"></div>
+        </div>
+        <div class="cor4">
+          <div class="incor4"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="butt">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+    </section>
+    <script>
+      var j = 1225;
+
+      for (var i = 1; i <= j; i++) {
+        var d = document.createElement("div");
+        document.getElementById("mainbox").appendChild(d);
+        d.className = "box";
+        d.id = "box" + i;
+      }
+      var vvv;
+      document.getElementById("start").onclick = function () {
+        document.getElementById("start").disabled = true;
+        document.getElementById("stop").disabled = false;
+        vvv = setInterval(viv, 500);
+
+        function viv() {
+          for (var i = 1; i <= j; i++) {
+            var black = "000000";
+            var white = "ffffff";
+            var randomColor = Math.floor(Math.random() * 2) + 1;
+            if (randomColor == 1) {
+              document.getElementById("box" + i).style.backgroundColor =
+                "#" + black;
+            } else {
+              document.getElementById("box" + i).style.backgroundColor =
+                "#" + white;
+            }
+          }
+        }
+      };
+      document.getElementById("stop").onclick = function () {
+        document.getElementById("start").disabled = false;
+        document.getElementById("stop").disabled = true;
+
+        clearInterval(vvv);
+      };
+    </script>
+  </body>
+</html>

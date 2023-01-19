@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <style>
+      body {
+        background-color: #d996fd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main {
+        background-color: #bf50fa;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 24px 24px 40px 0px rgba(0, 0, 0, 0.75);
+      }
+      h1 {
+        margin: 10px;
+      }
+      #num {
+        font-size: 30px;
+        font-weight: bolder;
+      }
+      .btns {
+        margin: 30px;
+      }
+      #err {
+        opacity: 0;
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        border: 1px solid red;
+        border-radius: 20px;
+        padding: 10px;
+      }
+      button {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px;
+        border: 2px solid black;
+        font-weight: bold;
+      }
+      #inc {
+        background-color: #59ff5e;
+      }
+      #inc:hover {
+        background-color: #12fa19;
+      }
+      #dec {
+        background-color: #56d5fc;
+      }
+      #dec:hover {
+        background-color: #00c3ff;
+      }
+      #res {
+        background-color: #ff5656;
+      }
+      #res:hover {
+        background-color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>COUNTER APP</h1>
+      <p id="num">0</p>
+      <div class="btns">
+        <button id="inc">Increase</button>
+        <button id="dec">Decrease</button>
+        <button id="res">Reset</button>
+      </div>
+      <span id="err">valid only zero</span>
+    </div>
+
+    <script>
+      var a = 0;
+      document.getElementById("inc").onclick = function () {
+        a += 1;
+        document.getElementById("num").innerHTML = a;
+        document.getElementById("err").style.opacity = 0;
+      };
+      document.getElementById("dec").onclick = function () {
+        if (a > 0) {
+          a -= 1;
+          document.getElementById("num").innerHTML = a;
+        } else {
+          document.getElementById("err").style.opacity = 1;
+        }
+      };
+      document.getElementById("res").onclick = function () {
+        a = 0;
+        document.getElementById("num").innerHTML = a;
+        document.getElementById("err").style.opacity = 0;
+      };
+    </script>
+  </body>
+</html>

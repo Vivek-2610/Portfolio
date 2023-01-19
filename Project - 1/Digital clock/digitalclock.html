@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      background-color: #ff8e8e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+    #clock {
+      font-family: "Orbitron", sans-serif;
+      font-weight: bold;
+      font-size: 30px;
+    }
+    #date {
+      font-family: "Dancing Script", cursive;
+      font-weight: bold;
+      font-size: 25px;
+    }
+    .main {
+      background-color: #000000;
+      color: #44ff00;
+      margin: auto;
+      padding: 30px;
+      border: 2px solid red;
+      border-radius: 40px;
+      box-shadow: 25px 25px 36px 0px rgba(0, 0, 0, 0.75);
+      text-shadow: 5px 5px 3px rgba(192, 184, 184, 0.41);
+    }
+  </style>
+  <body>
+    <div class="main">
+      <p class="p1" id="clock"></p>
+      <p class="p2" id="date"></p>
+    </div>
+    <script>
+      var vish = setInterval(time, 1000);
+      function time() {
+        var time_now = document.getElementById("clock");
+        var fulldate_now = document.getElementById("date");
+
+        var date = new Date();
+
+        //====get HOURs
+
+        var hour = date.getHours();
+        var hour_fix = hourfix();
+        var hour_now = hournow();
+        function hournow() {
+          if (hour_fix < 10) {
+            return `0${hour_fix}`;
+          } else {
+            return hour_fix;
+          }
+        }
+        function hourfix() {
+          if (hour <= 12) {
+            return hour;
+          } else {
+            return hour - 12;
+          }
+        }
+
+        // ======== get AM/PM
+        var ap_now = apnow();
+        function apnow() {
+          if (hour < 12) {
+            return "AM";
+          } else {
+            return "PM";
+          }
+        }
+
+        //====get MINUTEs
+        var minute = date.getMinutes();
+        var minute_now = minutenow();
+        function minutenow() {
+          if (minute < 10) {
+            return `0${minute}`;
+          } else {
+            return minute;
+          }
+        }
+
+        //====get SECONDs
+        var second = date.getSeconds();
+        var second_now = secondnow();
+        function secondnow() {
+          if (second < 10) {
+            return `0${second}`;
+          } else {
+            return second;
+          }
+        }
+
+        // ====== get DAY
+        var week = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        var day_now = week[date.getDay()];
+
+        //=======get DATE
+        date_now = datenow();
+        function datenow() {
+          if (date.getDate() < 10) {
+            return `0${date.getDate()}`;
+          } else {
+            return date.getDate();
+          }
+        }
+
+        // =========== get MONTH
+        var months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        var month_now = months[date.getMonth()];
+
+        //======get YEAR
+
+        var year_now = date.getFullYear();
+
+        time_now.innerHTML = `${hour_now} : ${minute_now} : ${second_now} ${ap_now}`;
+        fulldate_now.innerHTML = `${day_now}, ${date_now} ${month_now}, ${year_now}`;
+      }
+    </script>
+  </body>
+</html>

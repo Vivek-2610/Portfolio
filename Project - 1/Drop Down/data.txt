@@ -1,0 +1,61 @@
+=======India
+---------- Gujarat
+Ahmedabad
+Rajkot
+Gandhinagar
+Kutch
+Surat
+
+----------- Punjab
+Amitsar
+Bhatinda
+Jalandhar
+Mohali
+Patiala
+
+------------ Maharastra
+Mumbai
+Dhule
+Jalgaon
+Kolhapur
+Latur
+
+------------ Rajasthan
+Ajmer
+Jaipur
+Jodhpur
+Kota
+Udaipur
+
+======United States
+--------Alabama
+Andalusia
+Athens
+Auburn
+Sheffield
+Troy
+
+--------Colorado
+Denver
+Gunnison
+Littleton
+Pueblo
+Trinidad
+-------Iowa
+Dubuque
+Keokuk
+Newton
+Oskaloosa
+Waterloo
+-------Maine
+Castine
+Houlton
+Lewiston
+Portland
+Rumford
+----------Oregon
+Astoria
+Medford
+Redmond
+Salem
+Springfield
