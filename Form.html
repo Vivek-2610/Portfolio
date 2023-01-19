@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        border-radius: 5px;
+        padding: 3px;
+      }
+      fieldset {
+        display: block;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body style="text-align: center">
+    <h1>HTML Form</h1>
+
+    <form
+      style="
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <fieldset
+        style="
+          background-color: rgba(201, 188, 188, 0.8);
+          width: 500px;
+          border-radius: 5px;
+        "
+      >
+        <legend style="font-size: 30px">Sign-up</legend>
+        <label for="fname">First Name:</label><br />
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="Enter your first name"
+          value=""
+        /><br />
+        <label for="Lname">Last Name:</label><br />
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          placeholder="Enter your last name"
+        /><br />
+        <label for="gender">Gender:</label><br />
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="male">Female</label>
+        <input type="radio" id="other" name="gender" value="other" />
+        <label for="male">Other</label><br />
+        <label for="email">Enter your email:</label><br />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+        /><br />
+        <label for="pwd">Password:</label><br />
+        <input
+          type="password"
+          id="pwd"
+          name="pwd"
+          size="20"
+          placeholder="Password"
+          value=""
+        /><br />
+        <span id="message"></span> <br />
+        <label for="pwd2">Confirm Password:</label><br />
+        <input
+          type="password"
+          id="pwd2"
+          name="pwd2"
+          size="20"
+          placeholder="Confirm Password"
+          value=""
+        /><br /><span id="message2"></span><br />
+        <label for="number">Enter your mobile number:</label><br />
+        <input
+          type="number"
+          id="number"
+          name="number"
+          placeholder="123-456-7890"
+          value=""
+        /><br /><br />
+        <input type="checkbox" name="1" id="1" />
+        <label for="1">I agreed to this Term and Condition</label><br />
+        <input type="checkbox" name="2" id="2" />
+        <label for="2">I agreed to this Term and Condition</label><br />
+        <input type="checkbox" name="3" id="3" />
+        <label for="3">I agreed to this Term and Condition</label><br />
+        <input type="submit" onclick="fn()" /><br />
+      </fieldset>
+    </form>
+
+    <script>
+      function fn() {
+        // Firstname
+        var F = document.getElementById("fname").value;
+        if (F == "") {
+          window.alert("Please enter Firstname");
+          return 0;
+        } else if (F >= 0 || F < 0) {
+          window.alert("Don't enter number in Firstname");
+          return false;
+        }
+        // Lastname
+        var L = document.getElementById("lname").value;
+        if (L == "") {
+          window.alert("Please enter Lastname");
+          return false;
+        } else if (L >= 0 || L < 0) {
+          window.alert("Don't enter number in Lastname");
+          return false;
+        }
+        // Gender
+        if (document.getElementById("male").checked) {
+        } else if (document.getElementById("female").checked) {
+        } else if (document.getElementById("other").checked) {
+        } else {
+          alert("Please select gender!");
+          return false;
+        }
+        // E-mail
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (email.value.match(mailformat)) {
+        } else if (document.getElementById("email").value == "") {
+          alert("Please Enter E-mail");
+          return false;
+        } else {
+          alert("You have entered an invalid email address!");
+          return false;
+        }
+        // Password
+        var P1 = document.getElementById("pwd").value;
+        if (P1 == "") {
+          alert("Fill the password please!");
+          return false;
+        } else if (P1.length < 8) {
+          alert("Password length must be atleast 8 characters");
+          return false;
+        } else if (P1.length > 15) {
+          alert("Password length must not exceed 15 characters");
+          return false;
+        }
+
+        // Confirm Password
+        var P2 = document.getElementById("pwd2").value;
+        if (P2 == "") {
+          alert("Fill the Confirm password please!");
+          return false;
+        } else if (P2.length < 8) {
+          alert("Password length must be atleast 8 characters");
+          return false;
+        } else if (P2.length > 15) {
+          alert("Password length must not exceed 15 characters");
+          return false;
+        }
+        // Password and Confirm password
+        if (P1 !== P2) {
+          alert("Please enter Password and Confirm password same");
+          return 0;
+        }
+        // Mobile Number
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if (number.value.match(phoneno)) {
+        } else if (document.getElementById("number").value == "") {
+          alert("Please Enter Mobile Number");
+          return false;
+        } else {
+          alert("Enter Valid Mobile Number");
+          return false;
+        }
+        // Checkbox
+        var aa = document.getElementById("1").checked;
+        var bb = document.getElementById("2").checked;
+        var cc = document.getElementById("3").checked;
+        if (aa || bb || cc) {
+        } else {
+          alert("Please select checkbox!");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
